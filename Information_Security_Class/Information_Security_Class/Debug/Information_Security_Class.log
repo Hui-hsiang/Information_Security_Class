@@ -1,3 +1,23 @@
 ﻿  Encrypt.cpp
-e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(10): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(42): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(47): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(71): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(75): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(89): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(109): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(124): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(232): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(242): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(245): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(257): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(258): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(270): warning C4018: '<=': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(272): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(279): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(280): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(285): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(295): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(306): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(313): warning C4018: '<': signed/unsigned 不相符
+e:\information_security_class\hw1\information_security_class\information_security_class\encrypt.cpp(314): warning C4018: '<': signed/unsigned 不相符
   Information_Security_Class.vcxproj -> E:\information_Security_Class\HW1\Information_Security_Class\Debug\Information_Security_Class.exe
