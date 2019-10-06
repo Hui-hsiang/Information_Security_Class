@@ -9,7 +9,6 @@ string playfair(string key, string plaintext);
 string vernam(string key, string plaintext);
 string row(string key, string plaintext);
 string rail_fence(string key, string plaintext);
-string d_vernam(string key, string plaintext);
 int main() {
 	while (1) {
 		string cipher;
@@ -30,9 +29,6 @@ int main() {
 		}
 		else if (cipher == "rail_fence") {
 			cout << rail_fence(key, plaintext);
-		}
-		else if (cipher == "d_vernam") {
-			cout << d_vernam(key, plaintext);
 		}
 		else {
 			cout << "input erro";
@@ -334,28 +330,4 @@ string rail_fence(string key, string plaintext) {
 	}
 
 	return ciphertext;
-}
-
-string d_vernam(string key, string ciphertext) {
-	//QK[N[JPQDSE`QTKH_MA_NK
-	int key_Length = key.length();
-	string tmp;
-	string plaintext = "";
-	int counter = 0;
-	while (1) {
-		for (int i = 0; i < key.length(); i++) {
-			tmp += ((ciphertext[counter] - 'A') ^ (toupper(key[i]) - 'A')) + 'a';
-			counter++;
-			if (counter == ciphertext.length()) {
-				break;
-			}
-		}
-		plaintext += tmp;
-		key = tmp;
-		tmp = "";
-		if (plaintext.length() == ciphertext.length()) {
-			break;
-		}
-	}
-	return plaintext;
 }
