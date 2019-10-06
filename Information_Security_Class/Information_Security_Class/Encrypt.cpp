@@ -9,7 +9,6 @@ string playfair(string key, string plaintext);
 string vernam(string key, string plaintext);
 string row(string key, string plaintext);
 string rail_fence(string key, string plaintext);
-string d_vernam(string key, string plaintext);
 int main() {
 	while (1) {
 		string cipher;
@@ -30,9 +29,6 @@ int main() {
 		}
 		else if (cipher == "rail_fence") {
 			cout << rail_fence(key, plaintext);
-		}
-		else if (cipher == "d_vernam") {
-			cout << d_vernam(key, plaintext);
 		}
 		else {
 			cout << "input erro";
