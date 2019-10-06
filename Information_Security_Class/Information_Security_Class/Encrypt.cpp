@@ -326,27 +326,3 @@ string rail_fence(string key, string plaintext) {
 
 	return ciphertext;
 }
-
-string d_vernam(string key, string ciphertext) {
-	//QK[N[JPQDSE`QTKH_MA_NK
-	int key_Length = key.length();
-	string tmp;
-	string plaintext = "";
-	int counter = 0;
-	while (1) {
-		for (int i = 0; i < key.length(); i++) {
-			tmp += ((ciphertext[counter] - 'A') ^ (toupper(key[i]) - 'A')) + 'a';
-			counter++;
-			if (counter == ciphertext.length()) {
-				break;
-			}
-		}
-		plaintext += tmp;
-		key = tmp;
-		tmp = "";
-		if (plaintext.length() == ciphertext.length()) {
-			break;
-		}
-	}
-	return plaintext;
-}
