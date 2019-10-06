@@ -311,10 +311,19 @@ string rail_fence(string key, string plaintext) {
 		for (int i = 0; i < r; i++) {
 			table[i].push_back(plaintext[counter]);
 			counter++;
+			if (counter == plaintext.length()) {
+				break;
+			}
+		}
+		if (counter == plaintext.length()) {
+			break;
 		}
 		for (int i = r - 2; i > 0; i--) {
 			table[i].push_back(plaintext[counter]);
 			counter++;
+			if (counter == plaintext.length()) {
+				break;
+			}
 		}
 	}
 
