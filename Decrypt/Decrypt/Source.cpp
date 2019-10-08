@@ -19,22 +19,22 @@ int main()
 	{
 
 		if (cipher == "caesar") {
-			cout << caesar(key, ciphertext) << endl;
+			cout << caesar(key, ciphertext);
 		}
 		else if (cipher == "playfair") {
-			cout << playfair(key, ciphertext) << endl;
+			cout << playfair(key, ciphertext);
 		}
 		else if (cipher == "vernam") {
-			cout << vernam(key, ciphertext) << endl;
+			cout << vernam(key, ciphertext);
 		}
 		else if (cipher == "row") {
-			cout << row(key, ciphertext) << endl;
+			cout << row(key, ciphertext);
 		}
 		else if (cipher == "rail_fence") {
-			cout << rail_fence(key, ciphertext) << endl;
+			cout << rail_fence(key, ciphertext);
 		}
 		else {
-			cout << "input error." << endl;
+			cout << "input error.";
 		}
 	}
 	return 0;
