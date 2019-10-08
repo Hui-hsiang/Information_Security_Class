@@ -1,0 +1,6 @@
+﻿  Source.cpp
+c:\users\viege\source\repos\decrypt\decrypt\source.cpp(210): warning C4267: '正在初始化': 將 'size_t' 轉換為 'int'，資料可能遺失
+c:\users\viege\source\repos\decrypt\decrypt\source.cpp(215): warning C4267: '正在初始化': 將 'size_t' 轉換為 'int'，資料可能遺失
+c:\users\viege\source\repos\decrypt\decrypt\source.cpp(232): warning C4267: '正在初始化': 將 'size_t' 轉換為 'int'，資料可能遺失
+c:\users\viege\source\repos\decrypt\decrypt\source.cpp(277): warning C4267: '正在初始化': 將 'size_t' 轉換為 'int'，資料可能遺失
+  Decrypt.vcxproj -> C:\Users\viege\source\repos\Decrypt\x64\Debug\Decrypt.exe
