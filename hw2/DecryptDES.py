@@ -29,12 +29,17 @@ F_P = np.array([40,	8,	48,	16,	56,	24,	64,	32,
 #print (FP,FP.dtype)
 
 pm_input = list()
-
+#test = list()
 for i in IP:
     pm_input.append(ciphertext[i - 1])
 
+#for i in F_P:
+#    test.append(pm_input[i-1])
+
 pm_input = np.asarray(pm_input)
 #print (pm_input,pm_input.shape,pm_input.dtype)
+#print (np.asarray(test))
+
 
 li = pm_input[:32]
 ri = pm_input[32:]
@@ -54,7 +59,7 @@ PCone_r = np.array([63, 55, 47, 39, 31, 23, 15,
 Ci = list()
 Di = list()
 
-for i in range(28):
+for i in range(0,28):
     Ci.append(key[PCone_l[i]])
     Di.append(key[PCone_r[i]])
 
@@ -72,7 +77,7 @@ PCtwo = np.array([14, 17, 11, 24, 1,  5,
                   46, 42, 50, 36, 29, 32])
 
 key_s = np.array(np.zeros((16,48),dtype=int))
-
+print ('0',Ci,Di)
 for i in range(0,16):
     if i in [0,1,8,15]:
         tmpc = Ci[0]
@@ -84,12 +89,14 @@ for i in range(0,16):
         tmpd = Di[:2]
         Ci = np.append(Ci[2:],tmpc)
         Di = np.append(Di[2:],tmpd)
+    print(i+1,Ci,Di)
     ki = np.append(Ci,Di)
     tmpk = list()
     for j in PCtwo:
         tmpk.append(ki[j-1])
     ki = np.asarray(tmpk)
     key_s[i] = ki
+    #print(ki)
 #print (key_s)
 
 
@@ -149,13 +156,14 @@ sbox = [
 
 
 tmp = list()
-for i in range(15,0,-1):
+for i in range(0,16):
+    #print (i,li,ri)
     for j in E:
         tmp.append(ri[j-1])
 
     rn = np.asarray(tmp)
     rn = np.bitwise_xor(key_s[i],rn)
-    #print (rn)
+    #print (rn,rn.shape)
     b = [
         rn[0:6],rn[6:12],rn[12:18],rn[18:24],rn[24:30],rn[30:36],rn[36:42],rn[42:48]
     ]
@@ -183,20 +191,21 @@ for i in range(15,0,-1):
     for x,j in enumerate(FP):
         rn[x] = B[j-1]
 
-
     rn = np.bitwise_xor(li,rn)
     li = ri
     ri = rn
     tmp = []
     #print (np.append(li,ri))
 
-
-pre_final_output = np.append(li,ri)
+#print ('16',li,ri)
+pre_final_output = np.append(ri,li)
+#print (pre_final_output)
 final_output = list()
 for i in F_P:
     final_output.append(pre_final_output[i-1])
 
 final_output = "".join(np.asarray(final_output).astype(str))
+#print (final_output)
 final_output = hex(int(final_output,2))
 
 print (final_output)
