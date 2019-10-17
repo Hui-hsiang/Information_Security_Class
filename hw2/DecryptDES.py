@@ -59,9 +59,10 @@ PCone_r = np.array([63, 55, 47, 39, 31, 23, 15,
 Ci = list()
 Di = list()
 
-for i in range(0,28):
-    Ci.append(key[PCone_l[i]])
-    Di.append(key[PCone_r[i]])
+for i in PCone_l:
+    Ci.append(key[i-1])
+for j in PCone_r:
+    Di.append(key[j-1])
 
 Ci = np.asarray(Ci)
 Di = np.asarray(Di)
@@ -77,19 +78,29 @@ PCtwo = np.array([14, 17, 11, 24, 1,  5,
                   46, 42, 50, 36, 29, 32])
 
 key_s = np.array(np.zeros((16,48),dtype=int))
-print ('0',Ci,Di)
-for i in range(0,16):
+#print ('0',Ci,Di)
+
+
+ki = np.append(Ci,Di)
+tmpk = list()
+for j in PCtwo:
+        tmpk.append(ki[j-1])
+ki = np.asarray(tmpk)
+key_s[0] = ki
+for i in range(1,16): 
     if i in [0,1,8,15]:
-        tmpc = Ci[0]
-        tmpd = Di[0]
-        Ci = np.append(Ci[1:],tmpc)
-        Di = np.append(Di[1:],tmpd)
+        tmpc = Ci[27]
+        tmpd = Di[27]
+        #print (i,tmpc)
+        Ci = np.append(tmpc,Ci[:27])
+        Di = np.append(tmpd,Di[:27])
     else:
-        tmpc = Ci[:2]
-        tmpd = Di[:2]
-        Ci = np.append(Ci[2:],tmpc)
-        Di = np.append(Di[2:],tmpd)
-    print(i+1,Ci,Di)
+        tmpc = Ci[26:]
+        tmpd = Di[26:]
+        #print (i,tmpc)
+        Ci = np.append(tmpc,Ci[:26])
+        Di = np.append(tmpd,Di[:26])
+    #print(i+1,Ci,Di)
     ki = np.append(Ci,Di)
     tmpk = list()
     for j in PCtwo:
@@ -108,6 +119,7 @@ E = np.array([32, 1,  2,  3,  4,  5,
               20, 21, 22, 23, 24, 25,
               24, 25, 26, 27, 28, 29,
               28, 29, 30, 31, 32, 1])
+
 
 sbox = [
     # S1
@@ -152,15 +164,22 @@ sbox = [
      2, 1,  14, 7,  4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11]
   ]
 
-
+FP = [
+        16, 7,  20, 21, 29, 12, 28, 17,
+        1,  15, 23, 26, 5,  18, 31, 10,
+        2,  8,  24, 14, 32, 27, 3,  9,
+        19, 13, 30, 6,  22, 11, 4,  25
+    ]
 
 
 tmp = list()
-for i in range(0,16):
+for i in range(0,16,1):
     #print (i,li,ri)
+    
     for j in E:
         tmp.append(ri[j-1])
-
+        
+    #print (tmp)    
     rn = np.asarray(tmp)
     rn = np.bitwise_xor(key_s[i],rn)
     #print (rn,rn.shape)
@@ -176,24 +195,22 @@ for i in range(0,16):
     for j in range(1,8):
         col = b[j][0]*2+b[j][5]
         row = b[j][1]*2*2*2 + b[j][2]*2*2 + b[j][3]*2 + b[j][4] 
-        value = sbox[0][col*16 + row]
+        value = sbox[j][col*16 + row]
         value = str(bin(value))[2:].zfill(4)
         B = np.append(B,np.asarray(list(map(int,value))))
-
-    FP = [
-        16, 7,  20, 21, 29, 12, 28, 17,
-        1,  15, 23, 26, 5,  18, 31, 10,
-        2,  8,  24, 14, 32, 27, 3,  9,
-        19, 13, 30, 6,  22, 11, 4,  25
-    ]
+ 
     #print(B)
     rn = np.array(np.zeros(shape = (32),dtype=int))
     for x,j in enumerate(FP):
         rn[x] = B[j-1]
 
     rn = np.bitwise_xor(li,rn)
+
     li = ri
     ri = rn
+
+
+
     tmp = []
     #print (np.append(li,ri))
 
@@ -209,3 +226,4 @@ final_output = "".join(np.asarray(final_output).astype(str))
 final_output = hex(int(final_output,2))
 
 print (final_output)
+
