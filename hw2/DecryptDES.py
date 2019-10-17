@@ -29,20 +29,23 @@ F_P = np.array([40,	8,	48,	16,	56,	24,	64,	32,
 #print (FP,FP.dtype)
 
 pm_input = list()
-#test = list()
+
 for i in IP:
     pm_input.append(ciphertext[i - 1])
 
-#for i in F_P:
-#    test.append(pm_input[i-1])
+
 
 pm_input = np.asarray(pm_input)
 #print (pm_input,pm_input.shape,pm_input.dtype)
 #print (np.asarray(test))
 
+#print ('pm_input :',pm_input)
 
 li = pm_input[:32]
 ri = pm_input[32:]
+
+#print ('li :',li)
+#print ('ri :',ri)
 
 #print (li.shape,ri.shape)
 
@@ -67,6 +70,9 @@ for j in PCone_r:
 Ci = np.asarray(Ci)
 Di = np.asarray(Di)
 #print(Ci.shape,Di.shape)
+
+#print ('ci:',Ci)
+#print ('di:',Di)
 
 PCtwo = np.array([14, 17, 11, 24, 1,  5,
                   3,  28, 15, 6,  21, 10,
@@ -189,13 +195,17 @@ for i in range(0,16,1):
 
     col = b[0][0]*2+b[0][5]
     row = b[0][1]*2*2*2 + b[0][2]*2*2 + b[0][3]*2 + b[0][4] 
+    #print (col,row)
     value = sbox[0][col*16 + row]
+    #print (value)
     value = str(bin(value))[2:].zfill(4)
     B = np.asarray(list(map(int,value)))
     for j in range(1,8):
         col = b[j][0]*2+b[j][5]
         row = b[j][1]*2*2*2 + b[j][2]*2*2 + b[j][3]*2 + b[j][4] 
+        #print(col,row)
         value = sbox[j][col*16 + row]
+        #print (value)
         value = str(bin(value))[2:].zfill(4)
         B = np.append(B,np.asarray(list(map(int,value))))
  
