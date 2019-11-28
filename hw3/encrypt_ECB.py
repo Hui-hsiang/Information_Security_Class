@@ -1,10 +1,11 @@
-#%%
+# %%
 from PIL import Image
 from Crypto.Cipher import AES
 ppmPicture = 'myppm.ppm'
 im = Image.open('./photo.png')
 im.save(ppmPicture)
-#%%
+
+# EBC mode encryption
 def EBC_mode(key):  
     try:
         f = open('myppm.ppm','rb')
@@ -33,7 +34,7 @@ def EBC_mode(key):
         jpgPicture = 'EBC_encrypt.jpg'
         im = Image.open('EBC_encrypt.ppm')
         im.save(jpgPicture)
-# %%
+# CBC mode encryption
 def CBC_mode(key,iv):  
     try:
         f = open('myppm.ppm','rb')
@@ -65,7 +66,7 @@ def CBC_mode(key,iv):
         jpgPicture = 'CBC_encrypt.jpg'
         im = Image.open('CBC_encrypt.ppm')
         im.save(jpgPicture)
-#%%
+# Custom mode encryption
 def Cool_mode(key,iv):  
     try:
         f = open('myppm.ppm','rb')
@@ -83,7 +84,7 @@ def Cool_mode(key,iv):
                     data += bytes([0])
             tmp = []
             for d,i in zip(data,iv):
-                tmp.append((d ^ i) % 255)
+                tmp.append((d ^ i) % 256)
                 
             
             data = bytes(tmp)
@@ -102,11 +103,7 @@ def Cool_mode(key,iv):
         jpgPicture = 'Cool_encrypt.jpg'
         im = Image.open('Cool_encrypt.ppm')
         im.save(jpgPicture)
-# %%
-EBC_mode(b'1234567887654321')
-CBC_mode(b'1234567887654321',b'11111111ffffffff')
-Cool_mode(b'1234567887654321',b'11111111ffffffff')
-# %%
+# EBC mode decryption
 def EBC_mode_decrypt(key):  
     try:
         f = open('EBC_encrypt.ppm','rb')
@@ -135,7 +132,7 @@ def EBC_mode_decrypt(key):
         jpgPicture = 'EBC_decrypt.jpg'
         im = Image.open('EBC_decrypt.ppm')
         im.save(jpgPicture)
-# %%
+# CBC mode decryption
 def CBC_mode_decrypt(key,iv):  
     try:
         f = open('CBC_encrypt.ppm','rb')
@@ -169,6 +166,50 @@ def CBC_mode_decrypt(key,iv):
         jpgPicture = 'CBC_decrypt.jpg'
         im = Image.open('CBC_decrypt.ppm')
         im.save(jpgPicture)
-# %%
+# Custom mode decryption
+def Cool_mode_decrypt(key,iv):  
+    try:
+        f = open('Cool_encrypt.ppm','rb')
+        output = open('Cool_decrypt.ppm','wb')
+        cipher_block = AES.new(key,AES.MODE_ECB)
+        for i in range(3):
+            data = f.readline()
+            output.write(data)
+            print(data)
+        data = f.read(16)
+        while data:
+            if len(data) < 16:
+                pd = 16 - len(data)
+                for i in range (pd):
+                    data += bytes([0])
+
+            plaintext = cipher_block.decrypt(data)
+            
+            temp = []
+            for d,i in zip(plaintext,iv):
+                temp.append((d ^ i) % 256)
+                
+            plaintext = bytes(temp)            
+            output.write(plaintext)
+            
+            
+            temp = iv[15:16]
+            temp += iv[:15]
+            iv = bytes(temp)
+            data = f.read(16)
+
+    finally:
+        f.close()
+        output.close()
+        jpgPicture = 'Cool_decrypt.jpg'
+        im = Image.open('Cool_decrypt.ppm')
+        im.save(jpgPicture)
+
+# All modes encryption
+EBC_mode(b'1234567887654321')
+CBC_mode(b'1234567887654321',b'11111111ffffffff')
+Cool_mode(b'1234567887654321',b'11111111ffffffff')
+# All modes decryption
 EBC_mode_decrypt(b'1234567887654321')
 CBC_mode_decrypt(b'1234567887654321',b'11111111ffffffff')
+Cool_mode_decrypt(b'1234567887654321',b'11111111ffffffff')
