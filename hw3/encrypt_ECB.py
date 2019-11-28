@@ -30,6 +30,9 @@ def EBC_mode(key):
     finally:
         f.close()
         output.close()
+        jpgPicture = 'EBC_encrypt.jpg'
+        im = Image.open('EBC_encrypt.ppm')
+        im.save(jpgPicture)
 # %%
 def CBC_mode(key,iv):  
     try:
@@ -59,6 +62,9 @@ def CBC_mode(key,iv):
     finally:
         f.close()
         output.close()
+        jpgPicture = 'CBC_encrypt.jpg'
+        im = Image.open('CBC_encrypt.ppm')
+        im.save(jpgPicture)
 #%%
 def Cool_mode(key,iv):  
     try:
@@ -93,6 +99,9 @@ def Cool_mode(key,iv):
     finally:
         f.close()
         output.close()
+        jpgPicture = 'Cool_encrypt.jpg'
+        im = Image.open('Cool_encrypt.ppm')
+        im.save(jpgPicture)
 # %%
 EBC_mode(b'1234567887654321')
 CBC_mode(b'1234567887654321',b'11111111ffffffff')
@@ -123,7 +132,9 @@ def EBC_mode_decrypt(key):
     finally:
         f.close()
         output.close()
-
+        jpgPicture = 'EBC_decrypt.jpg'
+        im = Image.open('EBC_decrypt.ppm')
+        im.save(jpgPicture)
 # %%
 def CBC_mode_decrypt(key,iv):  
     try:
@@ -155,7 +166,9 @@ def CBC_mode_decrypt(key,iv):
     finally:
         f.close()
         output.close()
-        
+        jpgPicture = 'CBC_decrypt.jpg'
+        im = Image.open('CBC_decrypt.ppm')
+        im.save(jpgPicture)
 # %%
 EBC_mode_decrypt(b'1234567887654321')
 CBC_mode_decrypt(b'1234567887654321',b'11111111ffffffff')
