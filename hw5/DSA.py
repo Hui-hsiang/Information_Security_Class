@@ -115,8 +115,7 @@ def gen_p():
     return p,q,k
         
 # %%
-#msg = sys.argv[1]
-msg = 'mymsg'
+msg = sys.argv[1]
 
 print ("key generate...")
 p,q, k = gen_p()
