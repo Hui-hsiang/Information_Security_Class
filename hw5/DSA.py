@@ -129,7 +129,7 @@ print ('private key x = ',x)
 y = SAM(g,x,p)
 print ('private key y = ',y)
 # %%
-print ('print message:', msg)
+print ('message:', msg)
 print ('signing...')
 k = random.randint(1,q)
 kinv = modinv(k,q)
